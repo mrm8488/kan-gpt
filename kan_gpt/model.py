@@ -246,6 +246,11 @@ class GPT(nn.Module):
         # parameters in lm_head)
         n_params = sum(p.numel() for p in self.transformer.parameters())
         print("number of parameters: %.2fM" % (n_params / 1e6,))
+        
+        # count and print parameters of the mlp layer
+        mlp_params = sum(p.numel() for p in self.transformer.h[0].mlp.parameters())
+        print("number of parameters in mlp: %d" % mlp_params)
+
 
     def kan_loss(
         self,
