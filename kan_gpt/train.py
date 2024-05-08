@@ -1,7 +1,7 @@
 import os
 from datetime import datetime
 from typing import Union
-
+import math
 import torch
 from torch.utils.data.dataloader import DataLoader
 from wandb.sdk.lib import RunDisabled
@@ -157,6 +157,7 @@ def main(args, run=None):
             model.train()
             print("train_score: ", train_score)
             print("test_score: ", test_score)
+            print("perplexity: ", math.exp(test_score))
 
             wandb.log(
                 {
